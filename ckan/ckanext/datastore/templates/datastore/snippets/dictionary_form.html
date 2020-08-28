@@ -1,6 +1,6 @@
 {% import 'macros/form.html' as form %}
 
-<h3>{{ _( "Field {num}.").format(num=position) }} {{ field.id }} ({{ field.type }})</h3>
+<h3>{{ _( "Field") }} {{ field._id }} ({{ field.class }})</h3>
 
 <!--<h3>{{ _( "Field {num}.").format(num=position) }} {{ field.id }} ({{ field.type }})</h3>-->
 
@@ -10,18 +10,34 @@
   as part of the "info" object on the column.
 #}
 
-{{ form.select('info__' ~ position ~ '__type_override',
+{#{{ form.select('info__' ~ position ~ '__type_override',
   label=_('Type Override'), options=[
   {'name': '', 'value': ''},
   {'name': 'text', 'value': 'text'},
   {'name': 'numeric', 'value': 'numeric'},
   {'name': 'timestamp', 'value': 'timestamp'},
-  ], selected=field.get('info', {}).get('type_override', '')) }}
+  ], selected=field.get('info', {}).get('petal_width', '')) }} #}
 
 {{ form.input('info__' ~ position ~ '__label',
-  label=_('Label'), id='field-f' ~ position ~ 'label',
-  value=field.get('info', {}).get('label', ''), classes=['control-full']) }}
+  label=_('Sepal Length'), id='sepal_length' ~ position ~ 'label',
+  value= field.get('sepal_length', ''), classes=['control-full']) }}
 
-{{ form.markdown('info__' ~ position ~ '__notes',
+{{ form.input('info__' ~ position ~ '__label',
+  label=_('Sepal Width'), id='field-f' ~ position ~ 'label',
+  value=field.get('sepal_width', ''), classes=['control-full']) }}
+
+{{ form.input('info__' ~ position ~ '__label',
+  label=_('Petal Length'), id='field-f' ~ position ~ 'label',
+  value=field.get('petal_length', ''), classes=['control-full']) }}
+
+{{ form.input('info__' ~ position ~ '__label',
+  label=_('Petal Length'), id='field-f' ~ position ~ 'label',
+  value=field.get('petal_width', ''), classes=['control-full']) }}
+
+{{ form.input('info__' ~ position ~ '__label',
+  label=_('Class'), id='field-f' ~ position ~ 'label',
+  value=field.get('class', ''), classes=['control-full']) }}
+
+{#{{ form.markdown('info__' ~ position ~ '__notes',
   label=_('Description'), id='field-d' ~ position ~ 'notes',
-  value=field.get('info', {}).get('notes', '')) }}
+  value=field.get('info', {}).get('notes', '')) }}#}

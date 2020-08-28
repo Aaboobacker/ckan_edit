@@ -120,12 +120,10 @@ class DatastorePlugin(p.SingletonPlugin):
     def before_map(self, m):
         m.connect(
             '/datastore/dump/{resource_id}',
-            #'/api/3/action/datastore_search?resource_id={resource_id}',
             controller='ckanext.datastore.controller:DatastoreController',
             action='dump')
         m.connect(
             'resource_dictionary', '/dataset/{id}/dictionary/{resource_id}',
-            #'resource_dictionary', '/api/3/action/datastore_search?resource_id={resource_id}',
             controller='ckanext.datastore.controller:DatastoreController',
             action='dictionary', ckan_icon='book')
         return m

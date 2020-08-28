@@ -75,12 +75,13 @@ class DatastoreController(BaseController):
                 None, {'id': resource_id})
             rec = get_action('datastore_search')(None, {
                 'resource_id': resource_id,
-                'limit': 0})
+                'limit': 100})
         except (ObjectNotFound, NotAuthorized):
             abort(404, _('Resource not found'))
-
-        fields = [f for f in rec['fields'] if not f['id'].startswith('_')]
-
+        print("RECCC", rec)
+        #fields = [f for f in rec['fields'] if not f['id'].startswith('_')]
+        fields = [f for f in rec['records']]
+        print("FIELDSS", fields)
         if request.method == 'POST':
             data = dict_fns.unflatten(tuplize_dict(parse_params(
                 request.params)))

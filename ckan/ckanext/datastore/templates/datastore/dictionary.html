@@ -3,7 +3,7 @@
 {% import 'macros/form.html' as form %}
 
 {% block subtitle %}{{ h.dataset_display_name(pkg) }} - {{ h.resource_display_name(res) }}{% endblock %}
-
+<h1>{{ h.resource_display_name(res)  }}<h1>
 {% block primary_content_inner %}
 
   {% set action = h.url_for(
@@ -13,6 +13,7 @@
   <form method="post" action="{{ action }}" >
     {% block dictionary_form %}
       {% for field in fields %}
+       <h1> Hello {{ field }}<h1>
           {% snippet "datastore/snippets/dictionary_form.html", field=field, position=loop.index %}
       {% endfor %}
     {% endblock %}
