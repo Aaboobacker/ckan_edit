@@ -18,11 +18,11 @@
       {% endfor %}
     {% endblock %}
     <button class="btn btn-primary" name="save" type="submit">
-      <i class="fa fa-book"></i> {{ _('Save') }}
+      <i class="fa fa-book"></i> {{ _('Save Metadata') }}
     </button>
   </form>
 
-   <form method="post" action="{{ action }}" >
+<!--   <form method="post" action="{{ action }}" >
     {% block metadata_edit_form %}
       {% for field in fields %}
           {% snippet "datastore/snippets/metadata_edit_form.html", field=field, position=loop.index %}
@@ -31,5 +31,5 @@
     <button class="btn btn-primary" name="save" type="submit">
       <i class="fa fa-book"></i> {{ _('Save Metadata') }}
     </button>
-  </form>
+  </form> -->
 {% endblock %}

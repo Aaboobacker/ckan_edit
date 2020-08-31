@@ -75,7 +75,7 @@ class DatastoreController(BaseController):
                 None, {'id': resource_id})
             rec = get_action('datastore_search')(None, {
                 'resource_id': resource_id,
-                'limit': 100})
+                'limit': 10})
         except (ObjectNotFound, NotAuthorized):
             abort(404, _('Resource not found'))
         print("RECCC", rec)
@@ -85,7 +85,7 @@ class DatastoreController(BaseController):
         if request.method == 'POST':
             data = dict_fns.unflatten(tuplize_dict(parse_params(
                 request.params)))
-            info = data.get(u'info')
+            info = data.get(u'class')
             if not isinstance(info, list):
                 info = []
             info = info[:len(fields)]
@@ -98,6 +98,8 @@ class DatastoreController(BaseController):
                     'type': f['type'],
                     'info': fi if isinstance(fi, dict) else {}
                     } for f, fi in izip_longest(fields, info)]})
+
+            #print("ACTION", get_action)
 
             h.flash_success(_('Data Dictionary saved. Any type overrides will '
                               'take effect when the resource is next uploaded '
